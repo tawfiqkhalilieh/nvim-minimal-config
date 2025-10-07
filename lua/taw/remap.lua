@@ -8,21 +8,21 @@ vim.keymap.set("n", "<leader>p", vim.cmd.Ex)
 
 -- Center after using a count with 'j' or 'k'
 vim.keymap.set('n', 'j', function()
-	if vim.v.count > 0 then
-		return 'jzz'
-	else
-		return 'j'
-	end
+	return 'jzz'
 end, { expr = true, silent = true })
 
 vim.keymap.set('n', 'k', function()
-	if vim.v.count > 0 then
-		return 'kzz'
-	else
-		return 'k'
-	end
+	return 'kzz'
 end, { expr = true, silent = true })
 
 vim.keymap.set('n', '}', function() return '}zz' end, { expr = true, silent = true })
 vim.keymap.set('n', '{', function() return '{zz' end, { expr = true, silent = true })
+
+vim.keymap.set('n', 'm', function()
+    vim.cmd('normal gcc')   -- runs instantly
+end, { silent = false })    -- expr = true removed
+
+vim.keymap.set('x', 'm', '<Plug>Commentary', { silent = true })
+
+vim.keymap.set('n', ' e', 'oif err != nil {<CR>return err <CR>} <CR> <Esc>', { silent = true })
 
