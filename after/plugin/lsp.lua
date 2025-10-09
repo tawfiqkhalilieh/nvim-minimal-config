@@ -45,7 +45,6 @@ vim.lsp.config['pyright'] = {
     root_markers = { "pyproject.toml", "setup.py", ".git" },
 }
 
-
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "python",
     callback = function()
@@ -123,4 +122,66 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
+------------------------------------------------------------
+-- 🐚 Bash
+------------------------------------------------------------
+vim.lsp.config['bashls'] = {
+    cmd = { vim.fn.exepath("bash-language-server"), "start" },
+    filetypes = { "sh", "bash" },
+    root_markers = { ".git" },
+}
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "sh", "bash" },
+    callback = function()
+        vim.lsp.start(vim.lsp.config['bashls'])
+    end,
+})
+
+------------------------------------------------------------
+-- 🐳 Docker
+------------------------------------------------------------
+vim.lsp.config['dockerls'] = {
+    cmd = { vim.fn.exepath("docker-langserver"), "--stdio" },
+    filetypes = { "dockerfile" },
+    root_markers = { ".git", "Dockerfile" },
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "dockerfile" },
+    callback = function()
+        vim.lsp.start(vim.lsp.config['dockerls'])
+    end,
+})
+
+------------------------------------------------------------
+-- 🌐 HTML
+------------------------------------------------------------
+vim.lsp.config['html'] = {
+    cmd = { vim.fn.exepath("html-languageserver"), "--stdio" },
+    filetypes = { "html" },
+    root_markers = { ".git", "index.html" },
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "html" },
+    callback = function()
+        vim.lsp.start(vim.lsp.config['html'])
+    end,
+})
+
+------------------------------------------------------------
+-- ☕ Java
+------------------------------------------------------------
+vim.lsp.config['jdtls'] = {
+    cmd = { vim.fn.exepath("jdtls") },
+    filetypes = { "java" },
+    root_markers = { ".git", "pom.xml", "build.gradle" },
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "java" },
+    callback = function()
+        vim.lsp.start(vim.lsp.config['jdtls'])
+    end,
+})
