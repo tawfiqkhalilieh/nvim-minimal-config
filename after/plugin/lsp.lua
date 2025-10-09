@@ -11,8 +11,8 @@ lsp.nvim_workspace()
 
 
 lsp.ensure_installed({
-	"tsserver",
-	"eslinst",
+	-- "tsserver",
+	-- "eslinst",
 })
 
 local cmp= require("cmp")
