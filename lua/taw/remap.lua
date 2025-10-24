@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>p", vim.cmd.Ex)
+vim.keymap.set("n", " p", vim.cmd.Ex)
 
 
 -- vim.keymap.set("n", "j", "v:count ? 'jzz' : 'j'", { expr = true, noremap = true, silent = true })
@@ -59,3 +59,12 @@ end, { noremap = true, silent = true, desc = "LSP: Format Selection" })
 --     end
 -- end, { noremap = true, silent = true, desc = "Toggle LSP" })
 
+
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+
+vim.opt.softtabstop = 2
+vim.opt.autoindent = true
+vim.opt.smartindent = true
