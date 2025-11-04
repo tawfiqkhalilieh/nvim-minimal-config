@@ -1,3 +1,2 @@
-require("taw.remap")
 require("taw.packer")
-
+require("taw.remap")

@@ -39,18 +39,23 @@ vim.diagnostic.config({
 ------------------------------------------------------------
 -- 🐍 Python
 ------------------------------------------------------------
-vim.lsp.config['pyright'] = {
-    cmd = { vim.fn.exepath("pyright-langserver"), "--stdio" },
-    filetypes = { "python" },
-    root_markers = { "pyproject.toml", "setup.py", ".git" },
-}
+-- vim.lsp.config['pyright'] = {
+--     cmd = { vim.fn.exepath("pyright"), "--stdio" },
+--     filetypes = { "python" },
+--     root_markers = { "pyproject.toml", "setup.py", ".git" },
+-- }
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "python",
-    callback = function()
-        vim.lsp.start(vim.lsp.config['pyright'])
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "python",
+--     callback = function()
+--         vim.lsp.start(vim.lsp.config['pyright`'])
+--     end,
+-- })
+
+
+vim.lsp.enable('pyright')
+
+
 
 ------------------------------------------------------------
 -- 🦫 Go (Golang)
@@ -107,14 +112,14 @@ vim.lsp.config['prettier'] = {
     cmd = { vim.fn.exepath("prettierd"), "--stdio" },
     filetypes = {
         "javascript", "javascriptreact",
-        "typescript", "typescriptreact", "typescript.tsx", "json"
+        "typescript", "typescriptreact", "typescript.tsx", "json", "html", "css", "md"
     },
 }
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {
         "javascript", "javascriptreact",
-        "typescript", "typescriptreact", "typescript.tsx", "json"
+        "typescript", "typescriptreact", "typescript.tsx", "json", "html", "css", "md"
     },
     callback = function()
         vim.lsp.start(vim.lsp.config['prettier'])
@@ -158,9 +163,22 @@ vim.api.nvim_create_autocmd("FileType", {
 -- 🌐 HTML
 ------------------------------------------------------------
 vim.lsp.config['html'] = {
-    cmd = { vim.fn.exepath("html-languageserver"), "--stdio" },
+    cmd = { vim.fn.exepath("vscode-html-language-server"), "--stdio" },
     filetypes = { "html" },
     root_markers = { ".git", "index.html" },
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "html" },
+    callback = function()
+        vim.lsp.start(vim.lsp.config['html'])
+    end,
+})
+
+vim.lsp.config['html'] = {
+    cmd = { vim.fn.exepath("vscode-css-language-server"), "--stdio" },
+    filetypes = { "html" },
+    root_markers = { ".git", "style.css" },
 }
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -185,3 +203,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.lsp.start(vim.lsp.config['jdtls'])
     end,
 })
+
+
+
+

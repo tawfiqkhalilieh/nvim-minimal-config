@@ -8,34 +8,33 @@ vim.keymap.set("n", " p", vim.cmd.Ex)
 
 -- Center after using a count with 'j' or 'k'
 vim.keymap.set('n', 'j', function()
-	return 'jzz'
+  return 'jzz'
 end, { expr = true, silent = true })
 
 vim.keymap.set('n', 'k', function()
-	return 'kzz'
+  return 'kzz'
 end, { expr = true, silent = true })
 
 vim.keymap.set('n', '}', function() return '}zz' end, { expr = true, silent = true })
 vim.keymap.set('n', '{', function() return '{zz' end, { expr = true, silent = true })
 
 vim.keymap.set('n', 'm', function()
-	vim.cmd('normal gcc') -- runs instantly
+  vim.cmd('normal gcc')  -- runs instantly
 end, { silent = false }) -- expr = true removed
 
 vim.keymap.set('x', 'm', '<Plug>Commentary', { silent = true })
 
 vim.keymap.set('n', ' e', 'oif err != nil {<CR>return err <CR>} <CR> <Esc>', { silent = true })
 
-
 -- prettier
 -- Format current buffer using LSP
 vim.keymap.set('n', '<M-f>', function()
-	vim.lsp.buf.format()
+  vim.lsp.buf.format()
 end, { noremap = true, silent = true, desc = "LSP: Format Buffer" })
 
 -- Optional: also allow formatting in visual mode
 vim.keymap.set('v', '<M-f>', function()
-	vim.lsp.buf.format()
+  vim.lsp.buf.format()
 end, { noremap = true, silent = true, desc = "LSP: Format Selection" })
 
 -- -- Toggle LSP on/off for the current buffer
@@ -68,3 +67,17 @@ vim.opt.expandtab = true
 vim.opt.softtabstop = 2
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+
+
+vim.keymap.set("n", "<M-d>", vim.lsp.buf.definition, { silent = true })
+
+vim.keymap.set("n", "<M-h>", vim.lsp.buf.hover, { silent = true })
+
+vim.keymap.set("n", "<M-r>", vim.lsp.buf.rename, { silent = true })
+
+vim.keymap.set("n", "<M-a>", vim.lsp.buf.code_action, { silent = true })
+
+vim.keymap.set("n", "<M-Return>", vim.lsp.buf.declaration, { silent = true })
+
+vim.keymap.set("n", "<M-s>", vim.lsp.buf.signature_help, { buffer = true,  silent = true })
+
