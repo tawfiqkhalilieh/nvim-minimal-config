@@ -206,4 +206,16 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 
+vim.lsp.config['rust'] = {
+    cmd = { vim.fn.exepath("rust-analyzer") },
+    filetypes = { "rust" },
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "rust" },
+    callback = function()
+        vim.lsp.start(vim.lsp.config['rust'])
+    end,
+})
+
 
